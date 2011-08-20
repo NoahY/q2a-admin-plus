@@ -21,7 +21,7 @@
 
 	qa_register_plugin_layer('qa-admin-layer.php', 'Admin Layer');
 	
-	qa_register_plugin_module('widget', 'qa-php-widget.php', 'qa_php_admin', 'PHP Admin');
+	qa_register_plugin_module('module', 'qa-php-widget.php', 'qa_php_admin', 'PHP Admin');
 	
 
 /*

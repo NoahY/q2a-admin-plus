@@ -9,7 +9,8 @@ This is a plugin for **Question2Answer** that extends the admin area.
 --------
 Features
 --------
-- links to each plugin in admin
+- adds links to each plugin in admin
+- execute php commands from plugin page
 
 ------------
 Installation
@@ -32,7 +33,7 @@ Installation
 ----------
 Disclaimer
 ----------
-This is **useless** code.  It does nothing.
+This is **alpha** code.  It may break your install.  Probably not, but caveat emptor.
 
 -------
 Release

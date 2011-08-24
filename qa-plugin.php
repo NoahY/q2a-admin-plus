@@ -22,7 +22,16 @@
 	qa_register_plugin_layer('qa-admin-layer.php', 'Admin Layer');
 	
 	qa_register_plugin_module('module', 'qa-php-widget.php', 'qa_php_admin', 'PHP Admin');
+
+	// dev dump
 	
+	function qa_error_log($x) {
+		ob_start();
+		var_dump($x);
+		$contents = ob_get_contents();
+		ob_end_clean();
+		error_log($contents);
+	}
 
 /*
 	Omit PHP closing tag to help avoid accidental output

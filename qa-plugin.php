@@ -4,7 +4,7 @@
 	Plugin Name: Admin
 	Plugin URI: https://github.com/NoahY/q2a-admin-plus
 	Plugin Description: Provides admin additions
-	Plugin Version: 0.1
+	Plugin Version: 1.0b
 	Plugin Date: 2011-08-10
 	Plugin Author: NoahY
 	Plugin Author URI: http://www.question2answer.org/qa/user/NoahY

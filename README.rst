@@ -1,6 +1,6 @@
-================================
-Question2Answer Admin Plus v 0.1
-================================
+=================================
+Question2Answer Admin Plus v 1.0b
+=================================
 -----------
 Description
 -----------
@@ -9,8 +9,8 @@ This is a plugin for **Question2Answer** that extends the admin area.
 --------
 Features
 --------
-- adds links to each plugin in admin
 - execute php commands from plugin page
+- adds "top" links to each plugin in admin
 
 ------------
 Installation
@@ -33,7 +33,7 @@ Installation
 ----------
 Disclaimer
 ----------
-This is **alpha** code.  It may break your install.  Probably not, but caveat emptor.
+This is **beta** code.  It is probably okay for production environments, but may not work exactly as expected.  Refunds will not be given.  If it breaks, you get to keep both parts.
 
 -------
 Release

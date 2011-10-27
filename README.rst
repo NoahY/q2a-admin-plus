@@ -23,6 +23,7 @@ Installation
      at the command prompt (on Linux, Windows is a bit different)
    - To download directly, go to the `project page`_ and click **Download**
 
+#. extract the files to a subfolder such as ``admin`` inside the ``qa-plugins`` folder of your Q2A installation.
 #. navigate to your site, go to **Admin -> Plugins** on your q2a install and select options, then click **Save Changes**.
 
 .. _Question2Answer: http://www.question2answer.org/install.php

@@ -9,6 +9,7 @@ This is a plugin for **Question2Answer** that extends the admin area.
 --------
 Features
 --------
+- turns admin sub menu into drop-down
 - execute php commands from plugin page
 - adds "top" links to each plugin in admin
 

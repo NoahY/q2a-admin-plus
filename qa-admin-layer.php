@@ -7,29 +7,33 @@
 		function head_custom() {
 			qa_html_theme_base::head_custom();
 		
-			$this->output('
+			$this->output("
 <style>
-
-.qa-nav-main-item {
+.qa-nav-main-item{
 	position:relative;
 }
-.qa-nav-sub-dropdown-list {
-	display: none;
-	list-style: none outside none;
-	padding: 40px 0 0 0;
-	position: absolute;
-	top:-8px;
-	z-index: 1000;
-	
+.qa-nav-main-item ul{
+	padding-top:1px;
+	z-index:1000;
+	background:#fff; /* Adding a background makes the dropdown work properly in IE7+. Make this as close to your page's background as possible (i.e. white page == white background). */
+	background:rgba(255,255,255,0); /* But! Let's make the background fully transparent where we can, we don't actually want to see it if we can help it... */
+	list-style:none;
+	position:absolute;
+	left:-9999px; /* Hide off-screen when not needed (this is more accessible than display:none;) */
 }
-.qa-nav-sub-dropdown-list > li {
-  clear: left;
-  font-size: 75%;
-  width: 100px;
+.qa-nav-main-item ul li{
+	padding-top:1px; /* Introducing a padding between the li and the a give the illusion spaced items */
+	float:none;
 }
-
+.qa-nav-main-item ul a{
+	white-space:nowrap; /* Stop text wrapping and creating multi-line dropdown items */
+	font-size:75%;
+}
+.qa-nav-main-item:hover ul{ /* Display the dropdown on hover */
+	left:0; /* Bring back on-screen when needed */
+}
 </style>
-');
+");
 		
 		}
 
@@ -58,7 +62,7 @@
 		function nav_list($navigation, $class, $level=null)
 		{
 			if($class == 'nav-sub-dropdown') {
-				$this->output('<UL onmouseout="this.style.display=\'none\'" CLASS="qa-'.$class.'-list'.(isset($level) ? (' qa-'.$class.'-list-'.$level) : '').'">');
+				$this->output('<UL CLASS="qa-'.$class.'-list'.(isset($level) ? (' qa-'.$class.'-list-'.$level) : '').'">');
 
 				foreach ($navigation as $key => $navlink)
 					$this->nav_item($key, $navlink, $class, $level);
@@ -75,7 +79,7 @@
 			if($class == 'nav-sub-dropdown')
 				$class = 'nav-sub';
 			if($key == 'admin'&& $class == 'nav-main') {
-				$this->output('<LI onmouseover="jQuery(this).find(\'.qa-nav-sub-dropdown-list\').show()" CLASS="qa-'.$class.'-item'.(@$navlink['opposite'] ? '-opp' : '').
+				$this->output('<LI CLASS="qa-'.$class.'-item'.(@$navlink['opposite'] ? '-opp' : '').
 					(@$navlink['state'] ? (' qa-'.$class.'-'.$navlink['state']) : '').' qa-'.$class.'-'.$key.'">');
 				$this->nav_link($navlink, $class);
 				

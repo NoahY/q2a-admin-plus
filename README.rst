@@ -20,7 +20,7 @@ Installation
 #. Get the source code for this plugin from github_, either using git_, or downloading directly:
 
    - To download using git, install git and then type 
-     ``git clone git://github.com/NoahY/q2a-admin.git admin``
+     ``git clone git://github.com/NoahY/q2a-admin-plus.git admin``
      at the command prompt (on Linux, Windows is a bit different)
    - To download directly, go to the `project page`_ and click **Download**
 
@@ -30,7 +30,7 @@ Installation
 .. _Question2Answer: http://www.question2answer.org/install.php
 .. _git: http://git-scm.com/
 .. _github:
-.. _project page: https://github.com/NoahY/q2a-admin
+.. _project page: https://github.com/NoahY/q2a-admin-plus
 
 ----------
 Disclaimer

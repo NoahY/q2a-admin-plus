@@ -51,7 +51,7 @@
 				$anchors = array();
 				foreach ($content as $key => $part) {
 					if (strpos($key, 'form_')===0) {
-						$content[$key]['title'] .= ' <font size="1" style="cursor:pointer; color:blue" onclick="jQuery(\'html\').scrollTop(0)">top</font>';
+						$content[$key]['title'] .= ' <font size="1" style="cursor:pointer; color:blue" onclick="jQuery(document).scrollTop(0)">top</font>';
 					}
 				}
 				
@@ -69,7 +69,7 @@
 				
 				$this->output('</UL>');
 			}
-			else if(!is_array($navigation['admin$']) || $class != 'nav-sub') {
+			else if(!is_array(@$navigation['admin$']) || $class != 'nav-sub') {
 				qa_html_theme_base::nav_list($navigation, $class, $level=null);
 			}
 		}

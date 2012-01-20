@@ -5,7 +5,7 @@
 	// theme replacement functions
 
 		function doctype() {
-			if(qa_get_logged_in_level() >= QA_USER_LEVEL_ADMIN && ((time() - (int)qa_opt('admin_plus_notify_checked'))/3600 > qa_opt('admin_plus_notify_hours'))) {
+			if(qa_opt('admin_plus_notify') && qa_get_logged_in_level() >= QA_USER_LEVEL_ADMIN && ((time() - (int)qa_opt('admin_plus_notify_checked'))/3600 > qa_opt('admin_plus_notify_hours'))) {
 				qa_opt('admin_plus_notify_checked',time());
 				
 				$pluginfiles=glob(QA_PLUGIN_DIR.'*/qa-plugin.php');

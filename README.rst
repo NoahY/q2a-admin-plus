@@ -1,5 +1,5 @@
 =================================
-Question2Answer Admin Plus v 1.0b
+Question2Answer Admin Plus
 =================================
 -----------
 Description
@@ -12,6 +12,7 @@ Features
 - turns admin sub menu into drop-down
 - execute php commands from plugin page
 - adds "top" links to each plugin in admin
+- shows notice if updates for plugins are available
 
 ------------
 Installation

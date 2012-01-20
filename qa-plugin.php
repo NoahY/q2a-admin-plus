@@ -3,9 +3,9 @@
 /*
 	Plugin Name: Admin
 	Plugin URI: https://github.com/NoahY/q2a-admin-plus
-	Plugin Update Check URI: https://github.com/NoahY/q2a-admin-plus/raw/master/qa-plugin.php
+	Plugin Update Check URI: https://github.com/NoahY/q2a-admin-plus/raw/master/qa-plugin.php
 	Plugin Description: Provides admin additions
-	Plugin Version: 1.0b
+	Plugin Version: 1.1
 	Plugin Date: 2011-08-10
 	Plugin Author: NoahY
 	Plugin Author URI: http://www.question2answer.org/qa/user/NoahY

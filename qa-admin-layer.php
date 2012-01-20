@@ -4,6 +4,43 @@
 
 	// theme replacement functions
 
+		function doctype() {
+			if(qa_get_logged_in_level() >= QA_USER_LEVEL_ADMIN && ((time() - (int)qa_opt('admin_plus_notify_checked'))/3600 > qa_opt('admin_plus_notify_hours'))) {
+				qa_opt('admin_plus_notify_checked',time());
+				
+				$pluginfiles=glob(QA_PLUGIN_DIR.'*/qa-plugin.php');
+
+				if (count($pluginfiles)) {
+					require_once(QA_INCLUDE_DIR.'qa-app-admin.php');
+					$cnt = 0;
+					foreach ($pluginfiles as $pluginfile) {
+						$plugindirectory=dirname($pluginfile).'/';
+						
+						$contents=file_get_contents($pluginfile);
+						
+						$metadata=qa_admin_addon_metadata($contents, array(
+							'version' => 'Plugin Version',
+							'update' => 'Plugin Update Check URI',
+						));
+						
+							
+						if ( @$metadata['version'] && @$metadata['update']) {
+							$newdata=qa_admin_addon_metadata(qa_retrieve_url($metadata['update']), array(
+								'version' => 'Plugin Version', 
+								'uri' => 'Plugin URI',
+							));
+							if (strlen(@$newdata['version']) && strcmp($newdata['version'],$metadata['version'])) {
+								$this->content['notices'][]=qa_notice_form('updates', qa_viewer_html(qa_opt('admin_plus_notify_text'), 'html'));
+								$this->content['script'][]= "<script type=\"text/javascript\">jQuery(document).ready(function(){qa_reveal(document.getElementById('notice_updates'), 'notice');});</script>";
+								break;
+							}
+						}
+					}
+			}
+			}
+			qa_html_theme_base::doctype();
+		}
+
 		function head_custom() {
 			qa_html_theme_base::head_custom();
 		

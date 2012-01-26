@@ -21,7 +21,13 @@
 
 	qa_register_plugin_layer('qa-admin-layer.php', 'Admin Layer');
 	
-	qa_register_plugin_module('module', 'qa-php-widget.php', 'qa_php_admin', 'PHP Admin');
+	qa_register_plugin_module('module', 'qa-php-widget.php', 'qa_admin_plus_admin', 'Admin Plus');
+    
+    qa_register_plugin_module('event', 'qa-admin-check.php', 'qa_admin_plus_check', 'Admin Plus Check');
+	
+	if(function_exists('qa_register_plugin_phrases'))
+		qa_register_plugin_phrases('qa-admin-lang-*.php', 'admin_plus');
+
 
 	// dev dump
 

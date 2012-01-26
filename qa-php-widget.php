@@ -1,6 +1,6 @@
 <?php
 
-	class qa_php_admin {
+	class qa_admin_plus_admin {
 
 		function allow_template($template)
 		{
@@ -28,11 +28,15 @@
 		//	  Process form input
 
 			$ok = null;
-
+			
 			if(qa_clicked('db_process')) {
-				$command = qa_post_text('db_command');
-				if($command) eval($command);
-				if($ok == null) $ok = 'request processed';
+				if(file_exists(dirname(__FILE__).'/password') && file_get_contents(dirname(__FILE__).'/password') && qa_post_text('admin_plus_password') != trim(file_get_contents(dirname(__FILE__).'/password')))
+					$error = 'Password incorrect.';
+				else {
+					$command = qa_post_text('db_command');
+					if($command) eval($command);
+					if($ok == null) $ok = 'request processed';
+				}
 			}
 			else if(qa_clicked('admin_plus_save')) {
 				qa_opt('admin_plus_notify_text', qa_post_text('admin_plus_notify_text'));
@@ -44,7 +48,15 @@
 		//	  Create the form for display
 			
 			$fields = array();
-			
+			if(file_exists(dirname(__FILE__).'/password') && file_get_contents(dirname(__FILE__).'/password')) {
+				$fields[] = array(
+					'error' => @$error,
+					'label' => 'PHP Password',
+					'value' => '',
+					'tags' => 'NAME="admin_plus_password"',
+				);		
+			}
+
 			$fields[] = array(
 				'label' => 'Command:',
 				'tags' => 'NAME="db_command"',
@@ -65,7 +77,7 @@
 			);
 			$fields[] = array(
 				'label' => 'Notification Text',
-				'value' => qa_opt('admin_plus_notify_text'),
+				'value' => qa_html(qa_opt('admin_plus_notify_text')),
 				'tags' => 'NAME="admin_plus_notify_text"',
 			);		
 			$fields[] = array(

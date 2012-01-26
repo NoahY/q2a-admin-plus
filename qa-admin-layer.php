@@ -5,6 +5,34 @@
 	// theme replacement functions
 
 		function doctype() {
+			if($this->request == 'admin/emails') {
+				if(qa_post_text('option_notify_admin_a_post')) {
+					qa_opt('notify_admin_a_post',(bool)qa_post_text('option_notify_admin_a_post'));
+					qa_opt('notify_admin_c_post',(bool)qa_post_text('option_notify_admin_c_post'));
+				}
+				foreach($this->content['form']['fields'] as $key => $val) {
+					$arr[$key] = $val;
+					if ($key == 'notify_admin_q_post') {
+						$arr['notify_admin_a_post'] = array(
+							'id' => 'notify_admin_a_post',
+							'label' => 'Email this address when an answer is posted',
+							'tags' => 'NAME="option_notify_admin_a_post" ID="option_notify_admin_a_post"',
+							'value' => qa_opt('notify_admin_a_post'),
+							'type' => 'checkbox',
+							'error' => '',
+						);
+						$arr['notify_admin_c_post'] = array(
+							'id' => 'notify_admin_a_post',
+							'label' => 'Email this address when an answer is posted',
+							'tags' => 'NAME="option_notify_admin_c_post" ID="option_notify_admin_c_post"',
+							'value' => qa_opt('notify_admin_a_post'),
+							'type' => 'checkbox',
+							'error' => '',
+						);
+					}
+					$this->content['form']['fields'] = $arr;
+				}
+			}
 			if(qa_opt('admin_plus_notify') && qa_get_logged_in_level() >= QA_USER_LEVEL_ADMIN && ((time() - (int)qa_opt('admin_plus_notify_checked'))/3600 > qa_opt('admin_plus_notify_hours'))) {
 				qa_opt('admin_plus_notify_checked',time());
 				
@@ -36,7 +64,7 @@
 							}
 						}
 					}
-			}
+				}
 			}
 			qa_html_theme_base::doctype();
 		}

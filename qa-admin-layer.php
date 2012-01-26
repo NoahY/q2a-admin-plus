@@ -23,9 +23,9 @@
 						);
 						$arr['notify_admin_c_post'] = array(
 							'id' => 'notify_admin_a_post',
-							'label' => 'Email this address when an answer is posted',
+							'label' => 'Email this address when a comment is posted',
 							'tags' => 'NAME="option_notify_admin_c_post" ID="option_notify_admin_c_post"',
-							'value' => qa_opt('notify_admin_a_post'),
+							'value' => qa_opt('notify_admin_c_post'),
 							'type' => 'checkbox',
 							'error' => '',
 						);

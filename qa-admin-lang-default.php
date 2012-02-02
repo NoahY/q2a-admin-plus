@@ -25,7 +25,7 @@
 */
 
 	return array(
-		'posted_body' => "A new ^post_type has been asked by ^post_handle:\n\n^open^post_title\n\n^post_content^close\n\nClick below to see the question:\n\n^url\n\nThank you,\n\n^site_title",
+		'posted_body' => "A new ^post_type has been posted by ^post_handle:\n\n^open^post_title\n\n^post_content^close\n\nClick below to see the question:\n\n^url\n\nThank you,\n\n^site_title",
 		'posted_subject' => '^site_title has a new ^post_type',
 	);
 	

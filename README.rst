@@ -9,10 +9,11 @@ This is a plugin for **Question2Answer** that extends the admin area.
 --------
 Features
 --------
-- turns admin sub menu into drop-down
-- execute php commands from plugin page
+- turns admin submenu into drop-down
+- execute php commands from plugin page (option to require password, see `Password`_ below)
 - adds "top" links to each plugin in admin
-- shows notice if updates for plugins are available
+- shows notice to admin if updates for plugins are available
+- allows emails to be sent to admin for answer and comment posts.
 
 ------------
 Installation
@@ -32,6 +33,12 @@ Installation
 .. _git: http://git-scm.com/
 .. _github:
 .. _project page: https://github.com/NoahY/q2a-admin-plus
+
+----------
+Password
+----------
+.. _Password:
+Given the security risk involved with allowing arbitrary PHP code execution, it is recommended to require a password in order to use this function.  Add a file named `password` to the plugin directory, and put the password as the file's only content.  The plugin will recognize this, and add a field to enter it when executing code.
 
 ----------
 Disclaimer

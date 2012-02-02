@@ -71,8 +71,8 @@
 
 		function head_custom() {
 			qa_html_theme_base::head_custom();
-		
-			$this->output("
+			if(qa_opt('admin_plus_dropdown')) {
+				$this->output("
 <style>
 .qa-nav-main-item{
 	position:relative;
@@ -99,6 +99,7 @@
 }
 </style>
 ");
+			}
 		
 		}
 
@@ -126,37 +127,44 @@
 		
 		function nav_list($navigation, $class, $level=null)
 		{
-			if($class == 'nav-sub-dropdown') {
-				$this->output('<UL CLASS="qa-'.$class.'-list'.(isset($level) ? (' qa-'.$class.'-list-'.$level) : '').'">');
+			if(qa_opt('admin_plus_dropdown')) {
+				if($class == 'nav-sub-dropdown') {
+					$this->output('<UL CLASS="qa-'.$class.'-list'.(isset($level) ? (' qa-'.$class.'-list-'.$level) : '').'">');
 
-				foreach ($navigation as $key => $navlink)
-					$this->nav_item($key, $navlink, $class, $level);
-				
-				$this->output('</UL>');
+					foreach ($navigation as $key => $navlink)
+						$this->nav_item($key, $navlink, $class, $level);
+					
+					$this->output('</UL>');
+				}
+				else if(!is_array(@$navigation['admin$']) || $class != 'nav-sub') {
+					qa_html_theme_base::nav_list($navigation, $class, $level);
+				}
 			}
-			else if(!is_array(@$navigation['admin$']) || $class != 'nav-sub') {
-				qa_html_theme_base::nav_list($navigation, $class, $level=null);
-			}
+			else qa_html_theme_base::nav_list($navigation, $class, $level);
 		}
 		
 		function nav_item($key, $navlink, $class, $level=null)
 		{
-			if($class == 'nav-sub-dropdown')
-				$class = 'nav-sub';
-			if($key == 'admin'&& $class == 'nav-main') {
-				$this->output('<LI CLASS="qa-'.$class.'-item'.(@$navlink['opposite'] ? '-opp' : '').
-					(@$navlink['state'] ? (' qa-'.$class.'-'.$navlink['state']) : '').' qa-'.$class.'-'.$key.'">');
-				$this->nav_link($navlink, $class);
-				
-				//qa_error_log($this->content['navigation']['sub']);
-				
-				require_once QA_INCLUDE_DIR.'qa-app-admin.php';
-				$this->nav_list(qa_admin_sub_navigation(), 'nav-sub-dropdown', 1+$level);
-				
-				$this->output('</LI>');
+			if(qa_opt('admin_plus_dropdown')) {
+				if($class == 'nav-sub-dropdown')
+					$class = 'nav-sub';
+				if($key == 'admin'&& $class == 'nav-main') {
+					$this->output('<LI CLASS="qa-'.$class.'-item'.(@$navlink['opposite'] ? '-opp' : '').
+						(@$navlink['state'] ? (' qa-'.$class.'-'.$navlink['state']) : '').' qa-'.$class.'-'.$key.'">');
+					$this->nav_link($navlink, $class);
+					
+					//qa_error_log($this->content['navigation']['sub']);
+					
+					require_once QA_INCLUDE_DIR.'qa-app-admin.php';
+					$this->nav_list(qa_admin_sub_navigation(), 'nav-sub-dropdown', 1+$level);
+					
+					$this->output('</LI>');
+				}
+				else		
+					qa_html_theme_base::nav_item($key, $navlink, $class, $level);
 			}
-			else		
-				qa_html_theme_base::nav_item($key, $navlink, $class, $level=null);
+			else
+				qa_html_theme_base::nav_item($key, $navlink, $class, $level);
 
 		}
 

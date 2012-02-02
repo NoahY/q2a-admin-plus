@@ -14,6 +14,8 @@
 					return 'Plugin updates are available!  Visit <a href="'.qa_path_html('admin/plugins', null, qa_opt('site_url')).'">the plugins page</a> to see available updates.';
 				case 'admin_plus_notify_hours':
 					return 1;
+				case 'admin_plus_dropdown':
+					return true;
 				case 'admin_plus_notify_checked':
 					return time();
 				default:
@@ -42,6 +44,7 @@
 				qa_opt('admin_plus_notify_text', qa_post_text('admin_plus_notify_text'));
 				qa_opt('admin_plus_notify',(bool)qa_post_text('admin_plus_notify'));
 				qa_opt('admin_plus_notify_hours',(int)qa_post_text('admin_plus_notify_hours'));
+				qa_opt('admin_plus_dropdown',(int)qa_post_text('admin_plus_dropdown'));
 				$ok = 'Saved.';
 			}
 
@@ -65,6 +68,16 @@
 				'type' => 'textarea',
 			);
 
+			$fields[] = array(
+				'type' => 'blank',
+			);
+
+			$fields[] = array(
+				'label' => 'Use dropdown meny for admin nav',
+				'tags' => 'NAME="admin_plus_dropdown"',
+				'value' => qa_opt('admin_plus_dropdown'),
+				'type' => 'checkbox',
+			);
 			$fields[] = array(
 				'type' => 'blank',
 			);

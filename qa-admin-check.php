@@ -5,8 +5,9 @@
 			if (qa_opt('expert_question_enable')) {
 				switch ($event) {
 					case 'a_post':
-						if(qa_opt('notify_admin_a_post'))
+						if(qa_opt('notify_admin_a_post')) {
 							$this->sendEmail($event,$userid,$handle,$params);
+						}
 						break;
 					case 'c_post':
 						if(qa_opt('notify_admin_c_post'))
@@ -18,6 +19,10 @@
 			}
 		}
 		function sendEmail($event,$userid,$handle,$params){
+			$email = $this->getEmail($userid);
+			if($email == qa_opt('feedback_email'))
+				return;
+
 			$parent = qa_db_read_one_assoc(
 				qa_db_query_sub(
 					'SELECT * FROM ^posts WHERE postid=#',
@@ -50,5 +55,18 @@
 				'^site_url'=> qa_opt('site_url'),
 				'^url'=> $url,
 			));
+		}
+		function getEmail($userid) {
+			require_once QA_INCLUDE_DIR.'qa-db-selects.php';
+			if (QA_FINAL_EXTERNAL_USERS) {
+					$email=qa_get_user_email($userid);
+			
+			} else {
+				$useraccount=qa_db_select_with_pending(
+					qa_db_user_account_selectspec($userid, true)
+				);
+				$email=@$useraccount['email'];
+			}
+			return $email;
 		}
 	}

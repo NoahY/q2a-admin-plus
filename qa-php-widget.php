@@ -32,7 +32,9 @@
 			$ok = null;
 			
 			if(qa_clicked('db_process')) {
-				if(file_exists(dirname(__FILE__).'/password') && file_get_contents(dirname(__FILE__).'/password') && qa_post_text('admin_plus_password') != trim(file_get_contents(dirname(__FILE__).'/password')))
+				if(!file_exists(dirname(__FILE__).'/password') || !file_get_contents(dirname(__FILE__).'/password'))
+					$error = 'No password file found.';
+				if(qa_post_text('admin_plus_password') != trim(file_get_contents(dirname(__FILE__).'/password')))
 					$error = 'Password incorrect.';
 				else {
 					$command = qa_post_text('db_command');
@@ -51,6 +53,7 @@
 		//	  Create the form for display
 			
 			$fields = array();
+
 			if(file_exists(dirname(__FILE__).'/password') && file_get_contents(dirname(__FILE__).'/password')) {
 				$fields[] = array(
 					'error' => @$error,
@@ -58,15 +61,20 @@
 					'value' => '',
 					'tags' => 'NAME="admin_plus_password"',
 				);		
-			}
 
-			$fields[] = array(
-				'label' => 'Command:',
-				'tags' => 'NAME="db_command"',
-				'value' => @$command,
-				'rows' => 20,
-				'type' => 'textarea',
-			);
+				$fields[] = array(
+					'label' => 'Command:',
+					'tags' => 'NAME="db_command"',
+					'value' => @$command,
+					'rows' => 20,
+					'type' => 'textarea',
+				);
+			}
+			else
+				$fields[] = array(
+					'error' => 'In order to run php code, ou must place a password in a file called \'password\' in the admin plugin directory.',
+					'type' => 'static',
+				);		
 
 			$fields[] = array(
 				'type' => 'blank',

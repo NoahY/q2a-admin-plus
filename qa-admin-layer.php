@@ -113,11 +113,27 @@
 					'html' => '',
 				);
 				
+				$moduletypes=qa_list_module_types();
+				foreach ($moduletypes as $moduletype)
+					$plugins[]=qa_load_modules_with($moduletype, 'option_default');
 
 				$anchors = array();
 				foreach ($content as $key => $part) {
 					if (strpos($key, 'form_')===0) {
 						$content[$key]['title'] .= ' <font size="1" style="cursor:pointer; color:blue" onclick="jQuery(document).scrollTop(0)">top</font>';
+						foreach($content[$key]['fields'] as $idx => $field) {
+							if(isset($field['tags']) && preg_match('|name="([^"]+)"|i',$field['tags'],$name)) {
+								$name = $name[1];
+								error_log($name);
+								foreach($plugins as $modules)
+									foreach ($modules as $module) {
+										$value=$module->option_default($name);
+										$value = preg_replace('|\n|','\\\n',$value);
+										if (strlen($value))
+											$content[$key]['fields'][$idx]['label'] = @$content[$key]['fields'][$idx]['label'].'&nbsp;<input type="button" onclick="$(\'[name='.$name.']\').val(\''.$value.'\')" value="r" style="font-size:8pt; width:10px" title="reset to default value">';
+									}
+							}
+						}
 					}
 				}
 				

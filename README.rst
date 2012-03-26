@@ -12,6 +12,7 @@ Features
 - turns admin submenu into drop-down
 - execute php commands from plugin page (option to require password, see `Password`_ below)
 - adds "top" links to each plugin in admin
+- adds "r" buttons to reset values of plugin options
 - shows notice to admin if updates for plugins are available
 - allows emails to be sent to admin for answer and comment posts.
 

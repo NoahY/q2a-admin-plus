@@ -129,8 +129,12 @@
 									foreach ($modules as $module) {
 										$value=$module->option_default($name);
 										$value = preg_replace('|\n|','\\\n',$value);
-										if (strlen($value))
+										$value = str_replace('"','&quot;',$value);
+										$value = str_replace('\'','\\\'',$value);
+										if (strlen($value)) {
 											$content[$key]['fields'][$idx]['label'] = @$content[$key]['fields'][$idx]['label'].'&nbsp;<input type="button" onclick="$(\'[name='.$name.']\').val(\''.$value.'\')" value="r" style="font-size:8pt; width:10px" title="reset to default value">';
+											error_log($content[$key]['fields'][$idx]['label']);
+										}
 									}
 							}
 						}

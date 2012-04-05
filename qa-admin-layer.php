@@ -124,7 +124,6 @@
 						foreach($content[$key]['fields'] as $idx => $field) {
 							if(isset($field['tags']) && preg_match('|name="([^"]+)"|i',$field['tags'],$name)) {
 								$name = $name[1];
-								error_log($name);
 								foreach($plugins as $modules)
 									foreach ($modules as $module) {
 										$value=$module->option_default($name);
@@ -133,7 +132,6 @@
 										$value = str_replace('\'','\\\'',$value);
 										if (strlen($value)) {
 											$content[$key]['fields'][$idx]['label'] = @$content[$key]['fields'][$idx]['label'].'&nbsp;<input type="button" onclick="$(\'[name='.$name.']\').val(\''.$value.'\')" value="r" style="font-size:8pt; width:10px" title="reset to default value">';
-											error_log($content[$key]['fields'][$idx]['label']);
 										}
 									}
 							}
@@ -172,8 +170,6 @@
 					$this->output('<LI CLASS="qa-'.$class.'-item'.(@$navlink['opposite'] ? '-opp' : '').
 						(@$navlink['state'] ? (' qa-'.$class.'-'.$navlink['state']) : '').' qa-'.$class.'-'.$key.'">');
 					$this->nav_link($navlink, $class);
-					
-					//qa_error_log($this->content['navigation']['sub']);
 					
 					require_once QA_INCLUDE_DIR.'qa-app-admin.php';
 					$this->nav_list(qa_admin_sub_navigation(), 'nav-sub-dropdown', 1+$level);

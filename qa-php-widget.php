@@ -72,7 +72,7 @@
 			}
 			else
 				$fields[] = array(
-					'error' => 'In order to run php code, ou must place a password in a file called \'password\' in the admin plugin directory.',
+					'error' => 'In order to run php code, you must place a password in a file called \'password\' in the admin plugin directory.',
 					'type' => 'static',
 				);		
 

@@ -25,7 +25,7 @@
     
     qa_register_plugin_module('event', 'qa-admin-check.php', 'qa_admin_plus_check', 'Admin Plus Check');
 
-    qa_register_plugin_module('page', 'qa-admin-page.php', 'qa_admin_page', 'Options Page');
+    //qa_register_plugin_module('page', 'qa-admin-page.php', 'qa_admin_page', 'Options Page');
 	
 	if(function_exists('qa_register_plugin_phrases')) 
 		qa_register_plugin_phrases('qa-admin-lang-*.php', 'admin_plus');

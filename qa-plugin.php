@@ -5,7 +5,7 @@
 	Plugin URI: https://github.com/NoahY/q2a-admin-plus
 	Plugin Update Check URI: https://raw.github.com/NoahY/q2a-admin-plus/master/qa-plugin.php
 	Plugin Description: Provides admin additions
-	Plugin Version: 1.5
+	Plugin Version: 1.6
 	Plugin Date: 2011-08-10
 	Plugin Author: NoahY
 	Plugin Author URI: http://www.question2answer.org/qa/user/NoahY

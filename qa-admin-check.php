@@ -2,20 +2,18 @@
 
 	class qa_admin_plus_check {
 		function process_event($event, $userid, $handle, $cookieid, $params) {
-			if (qa_opt('expert_question_enable')) {
-				switch ($event) {
-					case 'a_post':
-						if(qa_opt('notify_admin_a_post')) {
-							$this->sendEmail($event,$userid,$handle,$params);
-						}
-						break;
-					case 'c_post':
-						if(qa_opt('notify_admin_c_post'))
-							$this->sendEmail($event,$userid,$handle,$params);
-						break;
-					default:
-						break;
-				}
+			switch ($event) {
+				case 'a_post':
+					if(qa_opt('notify_admin_a_post')) {
+						$this->sendEmail($event,$userid,$handle,$params);
+					}
+					break;
+				case 'c_post':
+					if(qa_opt('notify_admin_c_post'))
+						$this->sendEmail($event,$userid,$handle,$params);
+					break;
+				default:
+					break;
 			}
 		}
 		function sendEmail($event,$userid,$handle,$params){

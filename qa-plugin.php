@@ -5,7 +5,7 @@
 	Plugin URI: https://github.com/NoahY/q2a-admin-plus
 	Plugin Update Check URI: https://raw.github.com/NoahY/q2a-admin-plus/master/qa-plugin.php
 	Plugin Description: Provides admin additions
-	Plugin Version: 1.7
+	Plugin Version: 1.8
 	Plugin Date: 2011-08-10
 	Plugin Author: NoahY
 	Plugin Author URI: http://www.question2answer.org/qa/user/NoahY
@@ -27,10 +27,11 @@
 
     //qa_register_plugin_module('page', 'qa-admin-page.php', 'qa_admin_page', 'Options Page');
 	
-	if(function_exists('qa_register_plugin_phrases')) 
+	if(function_exists('qa_register_plugin_phrases')) {
 		qa_register_plugin_phrases('qa-admin-lang-*.php', 'admin_plus');
-		//qa_register_plugin_overrides('qa-admin-overrides.php');
-
+		qa_register_plugin_overrides('qa-admin-overrides.php');
+	}
+	
 	// dev dump
 
 	function qa_error_log($x) {

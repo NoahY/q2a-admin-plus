@@ -2,7 +2,7 @@
 		
 	function qa_fatal_error( $message ) {
 		$message .=  ' ('.$_SERVER['REMOTE_ADDR'].')';
-		return qa_fatal_error( $message );
+		return qa_fatal_error_base( $message );
 	}
 
 	function qa_get_request_content() {
